@@ -63,9 +63,16 @@ BorrowData = []
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    initialMessage = {
+        "msg": 'Servidor funcionando correctamente',
+        "status": 200
+    }
+    
+    return jsonify(initialMessage)
+
 # Endpoints para usuarios
-
-
 @app.route("/user", methods=["GET"])
 def getUsuarios():
     return jsonify({'Usuarios': UserData, 'status': 200})
