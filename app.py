@@ -510,6 +510,5 @@ def report():
     }
     return jsonify(report)
 
-
 if __name__ == "__main__":
     app.run(debug=True)
