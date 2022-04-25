@@ -15,7 +15,7 @@ UserData = [
         "user_name": "Mario Lopez",
         "user_nickname": "mlopez",
         "user_password": "matecomputo",
-        "user_rol": "Catedrático",
+        "user_rol": "Catedratico",
         "available": False
     }
 ]
@@ -36,11 +36,11 @@ BookData = [
     {
         "id_book": "2a",
         "book_author": "J.K. Rowling",
-        "book_title": "Harry Potter y la cámara secreta",
+        "book_title": "Harry Potter y la camara secreta",
         "book_edition": 1,
         "book_editorial": "Editorial Potter",
         "book_year": 1997,
-        "book_description": "La historia de Harry Potter y la cámara secreta, la segunda parte de la saga de libros de la autora.",
+        "book_description": "La historia de Harry Potter y la camara secreta, la segunda parte de la saga de libros de la autora.",
         "book_available_copies": 2,
         "book_unavailable_copies": 3,
         "book_copies": 5,
@@ -223,13 +223,13 @@ def getLibro():
     if args == {}:
         return jsonify({'Libros': BookData, 'status': 200})
     if not "book_title" in args and not "book_author" in args:
-        return jsonify({'message': 'Debe enviar parámetros correctos', 'status': 400})
+        return jsonify({'message': 'Debe enviar parametros correctos', 'status': 400})
     
     if "book_title" in args:
         if type(args['book_title']) is not str:
-            return jsonify({'message': 'El título debe ser un string', 'status': 400})
+            return jsonify({'message': 'El titulo debe ser un string', 'status': 400})
         if args['book_title'] == "":
-            return jsonify({'message': 'El título no puede estar vacio', 'status': 400})
+            return jsonify({'message': 'El titulo no puede estar vacio', 'status': 400})
         for book in BookData:
             if book['book_title'] == args['book_title']:
                 returnBooks.append(book)
@@ -253,13 +253,13 @@ def updateLibro():
     if not "book_author" in request.json:
         return jsonify({'message': 'No se recibio el autor', 'status': 400})
     if not "book_title" in request.json:
-        return jsonify({'message': 'No se recibio el título', 'status': 400})
+        return jsonify({'message': 'No se recibio el titulo', 'status': 400})
     if not "book_edition" in request.json:
-        return jsonify({'message': 'No se recibio la edición', 'status': 400})
+        return jsonify({'message': 'No se recibio la edicion', 'status': 400})
     if not "book_year" in request.json:
         return jsonify({'message': 'No se recibio el año', 'status': 400})
     if not "book_description" in request.json:
-        return jsonify({'message': 'No se recibio la descripción', 'status': 400})
+        return jsonify({'message': 'No se recibio la descripcion', 'status': 400})
     if not "book_available_copies" in request.json:
         return jsonify({'message': 'No se recibio la cantidad de copias disponibles', 'status': 400})
     if not "book_unavailable_copies" in request.json:
@@ -334,7 +334,7 @@ def createLibro():
         if not 'book_author' in book:
             causa = "No se recibió al autor"
         if not "book_title" in book:
-            causa = "No se recibio el título"
+            causa = "No se recibio el titulo"
         if not "book_edition" in book:
             causa = "No se recibio la edición"
         if not "book_year" in book:
@@ -362,7 +362,7 @@ def createLibro():
         if 'book_author' in book and type(book['book_author']) is not str:
             causa = "El autor debe ser un string"
         if 'book_title' in book and type(book['book_title']) is not str:
-            causa = "El título debe ser un string"
+            causa = "El titulo debe ser un string"
         if 'book_edition' in book and type(book['book_edition']) is not int:
             causa = "La edición debe ser un entero"
         if 'book_editorial' in book and type(book['book_editorial']) is not str:
@@ -505,8 +505,8 @@ def report():
     report = {
         "Cantidad de Libros": len(BookData),
         "Cantidad de Usuarios": len(UserData),
-        "Cantidad de Préstamos no devueltos": len([borrow for borrow in BorrowData if borrow['returned'] == False]),
-        "Cantidad de Préstamos devueltos": len([borrow for borrow in BorrowData if borrow['returned'] == True]),
+        "Cantidad de Prestamos no devueltos": len([borrow for borrow in BorrowData if borrow['returned'] == False]),
+        "Cantidad de Prestamos devueltos": len([borrow for borrow in BorrowData if borrow['returned'] == True]),
     }
     return jsonify(report)
 
