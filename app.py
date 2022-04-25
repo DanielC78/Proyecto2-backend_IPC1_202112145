@@ -241,6 +241,9 @@ def getLibro():
         for book in BookData:
             if book['book_author'] == args['book_author']:
                 returnBooks.append(book)
+    
+    if len(returnBooks) == 0:
+        return jsonify({'message': 'No se encontraron libros', 'status': 400})
     return jsonify({'Libros': returnBooks, 'status': 200})
     
 
