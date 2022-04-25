@@ -197,7 +197,7 @@ def createUsuario():
 
     # Se verifica que el rol sea correcto
     if request.json['user_rol'] != "Catedratico" and request.json['user_rol'] != "Estudiante":
-        return jsonify({'message': 'El rol debe ser Estudiante o Catedratico', "Rol erroneo": request.json["rol"], 'status': 400})
+        return jsonify({'message': 'El rol debe ser Estudiante o Catedratico', "Rol erroneo": request.json["user_rol"], 'status': 400})
 
     # Se verifica dentro de la lista de usuarios que el id_user no este repetido
     user = [user for user in UserData if user['id_user']
