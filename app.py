@@ -81,20 +81,20 @@ def getUsuarios():
 @app.route("/user/<string:id_user>", methods=["GET"])
 def getUsuario(id_user):
     if not id_user or id_user == "":
-        return jsonify({'message': 'No se recibió ningún dato', 'status': 404})
+        return jsonify({'message': 'No se recibio ningun dato', 'status': 404})
     else:
         for user in UserData:
             if user['id_user'] == id_user:
                 return jsonify({'Usuario': user, 'status': 200})
-        return jsonify({'message': 'No se encontró el usuario', 'status': 404})
+        return jsonify({'message': 'No se encontro el usuario', 'status': 404})
 
 
 @app.route("/user", methods=["PUT"])
 def updateUsuario():
 
-    # Validaciones de campos para la creación de usuarios
+    # Validaciones de campos para la creacion de usuarios
     if not request.json or not 'id_user' in request.json:
-        return jsonify({'status': 400, 'message': 'No se recibió el id_user'})
+        return jsonify({'status': 400, 'message': 'No se recibio el id_user'})
     if not "user_name" in request.json:
         return jsonify({'message': 'No se recibio el nombre', 'status': 400})
     if not "user_nickname" in request.json:
@@ -124,7 +124,7 @@ def updateUsuario():
     if 'available' in request.json and type(request.json['available']) is not bool:
         return jsonify({'message': 'El estado debe ser un boolean', 'status': 400})
 
-    # Se verifica que el dato no esté vacío
+    # Se verifica que el dato no este vacio
     if request.json['id_user'] == "":
         return jsonify({'message': 'El id no puede estar vacio', 'status': 400})
     if request.json['user_name'] == "":
@@ -137,7 +137,7 @@ def updateUsuario():
         return jsonify({'message': 'El rol no puede estar vacio', 'status': 400})
 
     if request.json['user_rol'] != "Catedratico" and request.json['user_rol'] != "Estudiante":
-        return jsonify({'message': 'El rol debe ser Estudiante o Catedratico', "Rol erróneo": request.json["user_rol"], 'status': 400})
+        return jsonify({'message': 'El rol debe ser Estudiante o Catedratico', "Rol erroneo": request.json["user_rol"], 'status': 400})
 
     # Se actualiza el usuario
     user[0]['user_name'] = request.json.get('user_name', user[0]['user_name'])
@@ -153,7 +153,7 @@ def updateUsuario():
 @app.route("/user", methods=["POST"])
 def createUsuario():
 
-    # Validaciones de campos para la creación de usuarios
+    # Validaciones de campos para la creacion de usuarios
     if not request.json or not 'id_user' in request.json:
         return jsonify({'message': 'No se recibieron datos', 'status': 400})
     if not "user_name" in request.json:
@@ -183,7 +183,7 @@ def createUsuario():
     if type(request.json['available']) is not bool:
         return jsonify({'message': 'El estado debe ser un boolean', 'status': 400})
 
-    # Se verifica que el dato no esté vacío
+    # Se verifica que el dato no este vacio
     if request.json['id_user'] == "":
         return jsonify({'message': 'El id no puede estar vacio', 'status': 400})
     if request.json['user_name'] == "":
@@ -197,9 +197,9 @@ def createUsuario():
 
     # Se verifica que el rol sea correcto
     if request.json['user_rol'] != "Catedratico" and request.json['user_rol'] != "Estudiante":
-        return jsonify({'message': 'El rol debe ser Estudiante o Catedratico', "Rol erróneo": request.json["rol"], 'status': 400})
+        return jsonify({'message': 'El rol debe ser Estudiante o Catedratico', "Rol erroneo": request.json["rol"], 'status': 400})
 
-    # Se verifica dentro de la lista de usuarios que el id_user no esté repetido
+    # Se verifica dentro de la lista de usuarios que el id_user no este repetido
     user = [user for user in UserData if user['id_user']
             == request.json['id_user']]
 
@@ -247,7 +247,7 @@ def getLibro():
 
 @app.route("/book", methods=["PUT"])
 def updateLibro():
-    # Verificación de datos
+    # Verificacion de datos
     if not request.json or not 'id_book' in request.json:
         return jsonify({'message': 'No se recibieron datos', 'status': 400})
     if not "book_author" in request.json:
@@ -276,15 +276,15 @@ def updateLibro():
     if 'book_author' in request.json and type(request.json['book_author']) is not str:
         return jsonify({'message': 'El autor debe ser un string', 'status': 400})
     if 'book_title' in request.json and type(request.json['book_title']) is not str:
-        return jsonify({'message': 'El título debe ser un string', 'status': 400})
+        return jsonify({'message': 'El titulo debe ser un string', 'status': 400})
     if 'book_edition' in request.json and type(request.json['book_edition']) is not int:
-        return jsonify({'message': 'La edición debe ser un entero', 'status': 400})
+        return jsonify({'message': 'La edicion debe ser un entero', 'status': 400})
     if 'book_editorial' in request.json and type(request.json['book_editorial']) is not str:
         return jsonify({'message': 'La editorial debe ser un string', 'status': 400})
     if 'book_year' in request.json and type(request.json['book_year']) is not int:
         return jsonify({'message': 'El año debe ser un entero', 'status': 400})
     if 'book_description' in request.json and type(request.json['book_description']) is not str:
-        return jsonify({'message': 'La descripción debe ser un string', 'status': 400})
+        return jsonify({'message': 'La descripcion debe ser un string', 'status': 400})
     if 'book_available_copies' in request.json and type(request.json['book_available_copies']) is not int:
         return jsonify({'message': 'Las copias disponibles deben ser un entero', 'status': 400})
     if 'book_unavailable_copies' in request.json and type(request.json['book_unavailable_copies']) is not int:
@@ -311,7 +311,7 @@ def updateLibro():
     book[0]['book_copies'] = request.json.get(
         'book_copies', book[0]['book_copies'])
 
-    # Se retorna un mensaje de éxito
+    # Se retorna un mensaje de exito
     return jsonify({'Libro': book[0], "message": "Actualizado correctamente", 'status': 200})
 
 
@@ -328,19 +328,19 @@ def createLibro():
     causa = ""
 
     for book in request.json:
-        # Verificación de datos
+        # Verificacion de datos
         if not "id_book" in book:
             causa = "No se recibio el id del libro"
         if not 'book_author' in book:
-            causa = "No se recibió al autor"
+            causa = "No se recibio al autor"
         if not "book_title" in book:
             causa = "No se recibio el titulo"
         if not "book_edition" in book:
-            causa = "No se recibio la edición"
+            causa = "No se recibio la edicion"
         if not "book_year" in book:
             causa = "No se recibio el año"
         if not "book_description" in book:
-            causa = "No se recibio la descripción"
+            causa = "No se recibio la descripcion"
         if not "book_available_copies" in book:
             causa = "No se recibio la cantidad de copias disponibles"
         if not "book_unavailable_copies" in book:
@@ -364,13 +364,13 @@ def createLibro():
         if 'book_title' in book and type(book['book_title']) is not str:
             causa = "El titulo debe ser un string"
         if 'book_edition' in book and type(book['book_edition']) is not int:
-            causa = "La edición debe ser un entero"
+            causa = "La edicion debe ser un entero"
         if 'book_editorial' in book and type(book['book_editorial']) is not str:
             causa = "La editorial debe ser un string"
         if 'book_year' in book and type(book['book_year']) is not int:
             causa = "El año debe ser un entero"
         if 'book_description' in book and type(book['book_description']) is not str:
-            causa = "La descripción debe ser un string"
+            causa = "La descripcion debe ser un string"
         if 'book_available_copies' in book and type(book['book_available_copies']) is not int:
             causa = "Las copias disponibles deben ser un entero"
         if 'book_unavailable_copies' in book and type(book['book_unavailable_copies']) is not int:
@@ -429,9 +429,9 @@ def createBorrow():
 
     # Se verifica que exista el campo de usuario y el libro
     if not "id_book" in borrow:
-        return jsonify({'message': 'No se recibió el id del libro', 'status': 400})
+        return jsonify({'message': 'No se recibio el id del libro', 'status': 400})
     if not "id_user" in borrow:
-        return jsonify({'message': 'No se recibió el id del usuario', 'status': 400})
+        return jsonify({'message': 'No se recibio el id del usuario', 'status': 400})
 
     # Se verifica que el libro exista
     book = [book for book in BookData if book['id_book'] == borrow['id_book']]
@@ -477,7 +477,7 @@ def getPrestamo(id):
 def returnPrestamo(id_borrow):
 
     if id_borrow == "":
-        return jsonify({'message': 'No se recibió el id del prestamo', 'status': 400})
+        return jsonify({'message': 'No se recibio el id del prestamo', 'status': 400})
     print(id_borrow)
 
     # Se verifica que el prestamo exista
@@ -501,7 +501,7 @@ def returnPrestamo(id_borrow):
 @app.route("/report", methods=["GET"])
 def report():
     if not request:
-        return jsonify({'message': 'No se recibió ningún reporte', 'status': 400})
+        return jsonify({'message': 'No se recibio ningun reporte', 'status': 400})
     report = {
         "Cantidad de Libros": len(BookData),
         "Cantidad de Usuarios": len(UserData),
